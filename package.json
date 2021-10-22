@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "parcel": "^2.0.0",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
+  },
+  "name": "silicon-valley-code-camp-app",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabriel-r-ursu/ldg-path-silicon-valley-code-camp.git"
+  },
+  "author": "Gabriel Ursu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabriel-r-ursu/ldg-path-silicon-valley-code-camp/issues"
+  },
+  "homepage": "https://github.com/gabriel-r-ursu/ldg-path-silicon-valley-code-camp#readme"
+}
