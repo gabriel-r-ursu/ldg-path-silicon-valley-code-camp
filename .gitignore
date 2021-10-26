@@ -1,3 +1,5 @@
-node_modules/
-local-styles.css
 Sillicon Valley Code Camp app mockup.png
+local-styles.css
+node_modules/
+.parcel-cache/
+dist/
