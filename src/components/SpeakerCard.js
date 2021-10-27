@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-const SpeakerCard = () => {
+const SpeakerCard = ({ speaker }) => {
+  const { id, first, last, bio, company, twitterHandle, sessions } = speaker;
   return (
     <CardContainer>
-      <SpeakerImage />
-      <SpeakerName />
+      <SpeakerImage id={id} first={first} last={last} />
+      <SpeakerName first={first} last={last} />
       <FavoriteBtn />
-      <SpeakerDescription />
-      <SpeakerSocials />
+      <SpeakerDescription description={bio} />
+      <SpeakerSocials company={company} twitter={twitterHandle} />
       <div className="separator"></div>
-      <SessionsList />
+      <SessionsList {...sessions[0]} />
       <RemoveSpeaker />
     </CardContainer>
   );
@@ -17,22 +18,24 @@ const SpeakerCard = () => {
 
 export default SpeakerCard;
 
-function SpeakerImage() {
+function SpeakerImage({ first, last, id }) {
   return (
-    <div>
+    <div className="image-container">
       <img
-        src={require("../images/dummy-speaker-image.jpg")}
-        alt="photo"
-        width="220px"
+        src={`images/speaker-${id}.jpg`}
+        alt={`${first} ${last}`}
+        className="speaker-image"
       />
     </div>
   );
 }
 
-function SpeakerName() {
+function SpeakerName({ first, last }) {
   return (
     <div className="speaker-name">
-      <span>Generic Name</span>
+      <span>
+        {first} {last}
+      </span>
     </div>
   );
 }
@@ -46,41 +49,45 @@ function FavoriteBtn() {
   );
 }
 
-function SpeakerDescription() {
+function SpeakerDescription({ description }) {
   return (
     <div className="description">
-      <span>
-        Lorem ipsum dolor sit amet, coetur adipisicing elit. Facere...
-      </span>
+      <span>{description.substring(0, 60)}</span>
     </div>
   );
 }
 
-function SpeakerSocials() {
+function SpeakerSocials({ company, twitter }) {
   return (
     <div className="socials-container">
       <div className="social">
-        <span className="material-icons">business</span>
+        <div>
+          <span className="material-icons">business</span>
+        </div>
         <div className="category-container">
           <span className="category">Company</span>
-          <span className="category-name">Name</span>
+          <span className="category-name">{company}</span>
         </div>
       </div>
       <div className="social">
-        <span className="material-icons">alternate_email</span>
+        <div>
+          <span className="material-icons">alternate_email</span>
+        </div>
         <div className="category-container">
           <span className="category">Twitter</span>
-          <span className="category-name">Handle</span>
+          <span className="category-name">{twitter}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function SessionsList() {
+function SessionsList({ title, room }) {
   return (
     <div className="sessions-container">
-      <span>Sessions list Session Room: room #</span>
+      <span>
+        {title} <strong style={{ color: "#000000" }}>Room: {room.name}</strong>
+      </span>
     </div>
   );
 }
@@ -89,7 +96,7 @@ function RemoveSpeaker() {
   return (
     <div className="button-container">
       <button className="remove-button">
-        <span class="material-icons">remove_circle_outline</span>
+        <span className="material-icons">remove_circle_outline</span>
         <span>Delete Speaker</span>
       </button>
     </div>
@@ -107,6 +114,17 @@ const CardContainer = styled.div`
   padding: 20px;
 
   color: #939393;
+
+  .image-container {
+    position: relative;
+    display: flex;
+    width: 220px;
+    height: 220px;
+  }
+
+  .speaker-image {
+    width: 100%;
+  }
 
   .speaker-name {
     width: 100%;
@@ -183,6 +201,7 @@ const CardContainer = styled.div`
     border-radius: 5px;
 
     background-color: #efefef;
+    font-size: 11px;
   }
 
   .button-container {

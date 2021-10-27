@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Header = () => {
   return (
     <Container>
-      <img src={require("../images/SVCClogo.png")} alt="app logo" />
+      <img src={require("../../static/images/SVCClogo.png")} alt="app logo" />
       <p>Silicon Valley Code Camp</p>
       <Authenticator />
     </Container>
@@ -34,6 +34,7 @@ const Container = styled.div`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   background-color: #6b767d;
   color: white;
   padding: 0.5em;

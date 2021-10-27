@@ -4,8 +4,7 @@ export const data = [
     first: "Arun",
     last: "Gupta",
     company: "Amazon",
-    bio:
-      "Arun Gupta is a Principal Open Source Technologist at Amazon Web Services. ",
+    bio: "Arun Gupta is a Principal Open Source Technologist at Amazon Web Services. ",
     twitterHandle: "arungupta",
     favorite: true,
     sessions: [
@@ -262,8 +261,7 @@ export const data = [
     first: "Chris",
     last: "Richardson",
     company: "Eventuate, Inc",
-    bio:
-      "Founder of Eventuate, Author of POJOs in Action, creator of the original Cloud Foundry",
+    bio: "Founder of Eventuate, Author of POJOs in Action, creator of the original Cloud Foundry",
     twitterHandle: "crichardson",
     favorite: false,
     sessions: [
@@ -386,8 +384,7 @@ export const data = [
     first: "Mark",
     last: "Abramson",
     company: "Printform Corporation",
-    bio:
-      "Mark is a globally recognized expert on digital printing for industrial and packaging applications.",
+    bio: "Mark is a globally recognized expert on digital printing for industrial and packaging applications.",
     twitterHandle: "mark__a",
     favorite: true,
     sessions: [
@@ -493,8 +490,7 @@ export const data = [
     first: "Douglas",
     last: "Crockford",
     company: "PayPal",
-    bio:
-      "Douglas Crockford discovered the JSON Data Interchange Format. He is also the author of _JavaScript: The Good Parts_. He has been called a guru, but he is actually more of a mahatma.",
+    bio: "Douglas Crockford discovered the JSON Data Interchange Format. He is also the author of _JavaScript: The Good Parts_. He has been called a guru, but he is actually more of a mahatma.",
     twitterHandle: "notatweeter",
     favorite: true,
     sessions: [
@@ -822,8 +818,7 @@ export const data = [
     first: "Eve",
     last: "Porcello",
     company: "Moon Highway",
-    bio:
-      "Eve Porcello is an instructor at Moon Highway, egghead.io, and LinkedIn Learning.",
+    bio: "Eve Porcello is an instructor at Moon Highway, egghead.io, and LinkedIn Learning.",
     twitterHandle: "eveporcello",
     favorite: true,
     sessions: [
@@ -890,8 +885,7 @@ export const data = [
     first: "Mary",
     last: "Grygleski",
     company: "IBM",
-    bio:
-      "Mary is a passionate developer advocate by day, and a very active tech community organizer by night.",
+    bio: "Mary is a passionate developer advocate by day, and a very active tech community organizer by night.",
     twitterHandle: "mgrygles",
     favorite: true,
     sessions: [
@@ -911,8 +905,7 @@ export const data = [
     first: "Gayle Laakmann",
     last: "McDowell",
     company: "CareerCup",
-    bio:
-      "Gayle Laakmann McDowell is the founder and CEO of CareerCup.com and the author of three books.",
+    bio: "Gayle Laakmann McDowell is the founder and CEO of CareerCup.com and the author of three books.",
     twitterHandle: "gayle",
     favorite: false,
     sessions: [

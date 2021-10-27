@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import SpeakerCard from "./SpeakerCard";
+import { data } from "../SpeakerData";
 
 const SpeakerList = () => {
   return (
     <Container>
-      <SpeakerCard />
+      {data.map((speaker) => {
+        return <SpeakerCard key={speaker.id} speaker={speaker} />;
+      })}
     </Container>
   );
 };
@@ -13,5 +16,8 @@ export default SpeakerList;
 
 const Container = styled.div`
   display: flex;
-  padding: 2em 0;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1em;
+  padding: 1em;
 `;

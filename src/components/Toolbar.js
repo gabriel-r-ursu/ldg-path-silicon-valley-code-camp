@@ -180,6 +180,7 @@ const SearchContainer = styled.div`
   }
 
   span {
+    cursor: pointer;
     position: absolute;
     right: -5px;
     font-size: 3em;
