@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-const Header = () => {
+const Header = ({ theme }) => {
   return (
-    <Container>
+    <Container theme={theme}>
       <img src={require("../../static/images/SVCClogo.png")} alt="app logo" />
       <p>Silicon Valley Code Camp</p>
       <Authenticator />
@@ -13,8 +13,9 @@ const Header = () => {
 function Authenticator() {
   return (
     <div>
-      <span>Logged in as Cotcodac</span> &nbsp;
-      <Button>Logout</Button>
+      <span>Logged in as Cotcodac</span>
+      &nbsp; &nbsp;
+      <button>Logout</button>
     </div>
   );
 }
@@ -26,20 +27,26 @@ const Container = styled.div`
   justify-content: space-between;
   flex-flow: column no-wrap;
   padding-bottom: 1em;
+  color: ${({ theme }) => (theme === "light" ? "" : "#f8f8f8")};
 
   p {
     font-size: 18px;
     font-weight: 600;
   }
-`;
 
-const Button = styled.button`
-  cursor: pointer;
-  background-color: #6b767d;
-  color: white;
-  padding: 0.5em;
-  border: none;
-  border-radius: 5px;
+  span {
+    font-weight: bold;
+    color: ${({ theme }) => (theme === "light" ? "" : "#4E9F3D")};
+  }
+
+  button {
+    cursor: pointer;
+    background-color: #6b767d;
+    color: white;
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+  }
 `;
 
 export default Header;

@@ -1,11 +1,12 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-const Toolbar = () => {
+const Toolbar = ({ theme, setTheme }) => {
   return (
-    <Container>
+    <Container theme={theme}>
       <AddUser />
       <ShowSessionsSelector />
-      <ThemeSelector />
+      <ThemeSelector theme={theme} setTheme={setTheme} />
       <Search />
       <YearSelector />
     </Container>
@@ -16,30 +17,39 @@ export default Toolbar;
 
 function AddUser() {
   return (
-    <AddUserButton>
-      <span className="material-icons">add_circle_outline</span>
-      <span> Add Speaker</span>
+    <AddUserButton onClick={() => {}}>
+      <span className="material-icons btn-name">add_circle_outline</span>
+      <span className="btn-name"> Add Speaker</span>
     </AddUserButton>
   );
 }
 
 function ShowSessionsSelector() {
+  const [showSessions, setShowSessions] = useState(true);
+
   return (
     <CheckBoxContainer>
       <span>Show Sessions</span>
       <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" />
+        <CheckBox
+          id="checkbox"
+          type="checkbox"
+          checked={showSessions}
+          onChange={(event) => {
+            setShowSessions(event.target.checked);
+          }}
+        />
         <CheckBoxLabel htmlFor="checkbox" />
       </CheckBoxWrapper>
     </CheckBoxContainer>
   );
 }
 
-function ThemeSelector() {
+function ThemeSelector({ theme, setTheme }) {
   return (
     <ThemeSelectorContainer>
       <span>Theme </span>
-      <select>
+      <select value={theme} onChange={(event) => setTheme(event.target.value)}>
         <option value="light">Light</option>
         <option value="dark">Dark</option>
       </select>
@@ -82,6 +92,9 @@ const Container = styled.div`
   border-bottom: 1px solid #f0f0f0;
 
   font-weight: bold;
+  span {
+    color: ${({ theme }) => (theme === "light" ? "#000000" : "#ffffff")};
+  }
 `;
 
 const AddUserButton = styled.button`
@@ -95,7 +108,9 @@ const AddUserButton = styled.button`
   padding: 0.5em;
 
   background-color: #50b4b0;
-  color: #f8f8f8;
+  .btn-name {
+    color: #f8f8f8;
+  }
 `;
 
 const CheckBoxContainer = styled.div`

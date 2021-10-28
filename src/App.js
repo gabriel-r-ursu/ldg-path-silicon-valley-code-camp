@@ -1,9 +1,22 @@
+import { useState } from "react";
 import { render } from "react-dom";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 import Toolbar from "./components/Toolbar";
 import SpeakerList from "./components/SpeakerList";
+
+const App = () => {
+  const [theme, setTheme] = useState("light");
+  return (
+    <Wrapper>
+      <GlobalStyles theme={theme} />
+      <Header theme={theme} />
+      <Toolbar theme={theme} setTheme={setTheme} />
+      <SpeakerList theme={theme} />
+    </Wrapper>
+  );
+};
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -14,6 +27,8 @@ body{
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+  background-color: ${({ theme }) =>
+    theme === "light" ? "#ffffff" : "#191A19"};
 }
 `;
 
@@ -23,16 +38,5 @@ const Wrapper = styled.div`
   flex-direction: column;
   max-width: 1000px;
 `;
-
-const App = () => {
-  return (
-    <Wrapper>
-      <GlobalStyles />
-      <Header />
-      <Toolbar />
-      <SpeakerList />
-    </Wrapper>
-  );
-};
 
 render(<App />, document.getElementById("root"));

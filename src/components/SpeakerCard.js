@@ -114,6 +114,7 @@ const CardContainer = styled.div`
   padding: 20px;
 
   color: #939393;
+  background-color: #ffffff;
 
   .image-container {
     position: relative;
