@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
+import { SpeakerFilterContext } from "../contexts/SpeakerFilterContext";
 
 const Toolbar = ({ theme, setTheme }) => {
+  const {
+    showSessions,
+    setShowSessions,
+    eventYear,
+    setEventYear,
+    setSearchSpeaker,
+    EVENT_YEARS,
+  } = useContext(SpeakerFilterContext);
+
   return (
     <Container theme={theme}>
       <AddUser />
-      <ShowSessionsSelector />
+      <ShowSessionsSelector
+        showSessions={showSessions}
+        setShowSessions={setShowSessions}
+      />
       <ThemeSelector theme={theme} setTheme={setTheme} />
-      <Search />
-      <YearSelector />
+      <Search setSearchSpeaker={setSearchSpeaker} />
+      <YearSelector
+        eventYear={eventYear}
+        setEventYear={setEventYear}
+        years={EVENT_YEARS}
+      />
     </Container>
   );
 };
@@ -24,9 +41,7 @@ function AddUser() {
   );
 }
 
-function ShowSessionsSelector() {
-  const [showSessions, setShowSessions] = useState(true);
-
+function ShowSessionsSelector({ showSessions, setShowSessions }) {
   return (
     <CheckBoxContainer>
       <span>Show Sessions</span>
@@ -57,24 +72,39 @@ function ThemeSelector({ theme, setTheme }) {
   );
 }
 
-function Search() {
+function Search({ setSearchSpeaker }) {
   return (
     <SearchContainer>
-      <input type="text" placeholder="Search..."></input>
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => {
+          setSearchSpeaker(e.target.value);
+        }}
+      ></input>
       <span className="material-icons">pageview</span>
     </SearchContainer>
   );
 }
 
-function YearSelector() {
+function YearSelector({ eventYear, setEventYear, years }) {
   return (
     <YearSelectorContainer>
       <span>Year </span>
-      <select dir="ltr">
-        <option value="2021">2021</option>
-        <option value="2020">2020</option>
-        <option value="2019">2019</option>
-        <option value="2018">2018</option>
+      <select
+        dir="ltr"
+        value={eventYear}
+        onChange={({ currentTarget }) => {
+          setEventYear(currentTarget.value);
+        }}
+      >
+        {years.map((year) => {
+          return (
+            <option value={year} key={year}>
+              {year}
+            </option>
+          );
+        })}
       </select>
     </YearSelectorContainer>
   );

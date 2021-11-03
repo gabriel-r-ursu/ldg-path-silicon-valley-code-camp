@@ -3,8 +3,7 @@ import { render } from "react-dom";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
-import Toolbar from "./components/Toolbar";
-import SpeakerList from "./components/SpeakerList";
+import SpeakersToolbar from "./components/SpeakersToolbar";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -12,8 +11,7 @@ const App = () => {
     <Wrapper>
       <GlobalStyles theme={theme} />
       <Header theme={theme} />
-      <Toolbar theme={theme} setTheme={setTheme} />
-      <SpeakerList theme={theme} />
+      <SpeakersToolbar theme={theme} setTheme={setTheme} />
     </Wrapper>
   );
 };

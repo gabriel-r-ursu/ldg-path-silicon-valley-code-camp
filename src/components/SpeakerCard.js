@@ -1,16 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { SpeakerFilterContext } from "../contexts/SpeakerFilterContext";
 
-const SpeakerCard = ({ speaker }) => {
-  const { id, first, last, bio, company, twitterHandle, sessions } = speaker;
+const SpeakerCard = ({ speaker, toggleFavorite }) => {
+  const { id, first, last, bio, company, twitterHandle, sessions, favorite } =
+    speaker;
   return (
     <CardContainer>
       <SpeakerImage id={id} first={first} last={last} />
       <SpeakerName first={first} last={last} />
-      <FavoriteBtn />
+      <FavoriteBtn favorite={favorite} toggleFavorite={toggleFavorite} />
       <SpeakerDescription description={bio} />
       <SpeakerSocials company={company} twitter={twitterHandle} />
-      <div className="separator"></div>
-      <SessionsList {...sessions[0]} />
+      <hr></hr>
+      <SessionsList sessions={sessions} />
       <RemoveSpeaker />
     </CardContainer>
   );
@@ -40,10 +43,12 @@ function SpeakerName({ first, last }) {
   );
 }
 
-function FavoriteBtn() {
+function FavoriteBtn({ favorite, toggleFavorite }) {
   return (
-    <div className="favorite-btn">
-      <span className="material-icons">star_border</span>
+    <div className="favorite-btn" onClick={toggleFavorite}>
+      <span className="material-icons">
+        {favorite ? "star" : "star_border"}
+      </span>
       <span>Favorite</span>
     </div>
   );
@@ -82,14 +87,37 @@ function SpeakerSocials({ company, twitter }) {
   );
 }
 
-function SessionsList({ title, room }) {
+function SessionsList({ sessions }) {
+  const { eventYear } = useContext(SpeakerFilterContext);
   return (
-    <div className="sessions-container">
-      <span>
-        {title} <strong style={{ color: "#000000" }}>Room: {room.name}</strong>
-      </span>
+    <div>
+      {sessions
+        .filter((session) => {
+          return session.eventYear === eventYear;
+        })
+        .map((session) => (
+          <div key={session.id}>
+            <Session {...session} />
+          </div>
+        ))}
     </div>
   );
+}
+
+function Session({ title, room }) {
+  const { showSessions } = useContext(SpeakerFilterContext);
+  if (showSessions) {
+    return (
+      <div className="sessions-container">
+        <span>
+          {title}{" "}
+          <strong style={{ color: "#000000" }}>Room: {room.name}</strong>
+        </span>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 function RemoveSpeaker() {
@@ -139,8 +167,9 @@ const CardContainer = styled.div`
   }
 
   .favorite-btn {
+    width: 100%;
     cursor: pointer;
-    line-height: 1.5em;
+    padding-bottom: 0.5em;
 
     .material-icons {
       font-size: 16px;
@@ -157,8 +186,7 @@ const CardContainer = styled.div`
     width: 100%;
     display: flex;
     gap: 1em;
-
-    padding-bottom: 1em;
+    padding-bottom: 1rem;
   }
 
   .social {
@@ -189,11 +217,9 @@ const CardContainer = styled.div`
     }
   }
 
-  .separator {
-    width: 119%;
-    padding-left: 20px;
-    margin-left: -20px;
-    border-bottom: 1px solid #f0f0f0;
+  hr {
+    width: 100%;
+    border: 0.5px solid #f0f0f0;
   }
 
   .sessions-container {
